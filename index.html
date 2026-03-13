@@ -6,77 +6,173 @@
     <title>STORM OF DESTRUCTION | HEAVY ROCK</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;400;700&display=swap');
-        :root { --bg-dark: #020202; --accent: #ffffff; --electric-blue: #00eeff; --glass: rgba(255, 255, 255, 0.03); --border-glass: rgba(255, 255, 255, 0.1); }
+        
+        :root { 
+            --bg-dark: #020202; 
+            --accent: #ffffff; 
+            --electric-blue: #00eeff; 
+            --glass: rgba(255, 255, 255, 0.03); 
+            --border-glass: rgba(255, 255, 255, 0.1); 
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { background-color: var(--bg-dark); color: #ccc; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0; width: 100%; height: 70px;
+            background: rgba(2, 2, 2, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-glass);
+            display: flex; justify-content: center; align-items: center; z-index: 1000;
+        }
+        nav ul { display: flex; list-style: none; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        nav a { text-decoration: none; color: #888; font-family: 'Syncopate', sans-serif; font-size: 0.55rem; letter-spacing: 2px; transition: 0.3s; }
+        nav a:hover { color: var(--electric-blue); text-shadow: 0 0 10px var(--electric-blue); }
+
         .thunder-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 0%, #111 0%, transparent 70%); z-index: -1; }
         header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .logo-container { max-width: 600px; width: 85%; animation: storm-entry 1.5s ease-out; }
-        .logo-container img { width: 100%; filter: drop-shadow(0 0 20px rgba(255,255,255,0.2)); }
-        @keyframes storm-entry { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-        .motto { font-family: 'Syncopate', sans-serif; font-size: 0.8rem; letter-spacing: 6px; text-transform: uppercase; color: var(--accent); opacity: 0.7; margin-top: 20px; }
-        section { padding: 100px 20px; max-width: 1100px; margin: auto; }
-        h2 { font-family: 'Syncopate', sans-serif; font-size: 1.8rem; margin-bottom: 50px; text-align: center; color: #fff; letter-spacing: 8px; }
-        .glass-box { background: var(--glass); backdrop-filter: blur(10px); border: 1px solid var(--border-glass); padding: 40px; }
-        .arsenal-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-top: 30px; }
-        .arsenal-item { padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); text-align: center; font-size: 0.7rem; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
+        .logo-container { max-width: 600px; width: 85%; }
+        .logo-container img { width: 100%; filter: drop-shadow(0 0 20px rgba(255,255,255,0.1)); }
+        
+        .motto { font-family: 'Syncopate', sans-serif; font-size: 0.8rem; letter-spacing: 6px; text-transform: uppercase; color: var(--accent); opacity: 0.7; margin-top: 20px; animation: flicker 3s infinite; }
+        @keyframes flicker { 0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 0.5; } 20%, 24%, 55% { opacity: 1; color: var(--electric-blue); } }
+        
+        section { padding: 60px 20px; max-width: 1100px; margin: auto; }
+        h2 { font-family: 'Syncopate', sans-serif; font-size: 1.4rem; margin-bottom: 40px; text-align: center; color: #fff; letter-spacing: 8px; text-transform: uppercase; border-bottom: 1px solid var(--border-glass); padding-bottom: 20px; }
+        
+        .glass-box { background: var(--glass); backdrop-filter: blur(10px); border: 1px solid var(--border-glass); padding: 40px; line-height: 1.8; margin-bottom: 30px; border-radius: 4px; }
+        
+        /* NOVO: GRID DE CONTEÚDO (JOURNALS) */
+        .journal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .journal-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-glass); padding: 25px; }
+        .journal-date { color: var(--electric-blue); font-size: 0.7rem; font-family: 'Syncopate'; margin-bottom: 10px; display: block; }
+        .journal-card h3 { color: #fff; margin-bottom: 10px; font-size: 1.1rem; }
+
+        /* NOVO: FAQ */
+        .faq-item { margin-bottom: 20px; border-bottom: 1px solid var(--border-glass); padding-bottom: 10px; }
+        .faq-item h4 { color: var(--electric-blue); font-family: 'Syncopate'; font-size: 0.7rem; margin-bottom: 5px; }
+
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; text-align: center; margin-top: 30px; }
+        .stat-item { border: 1px solid var(--border-glass); padding: 20px; }
+        .stat-num { display: block; font-family: 'Syncopate', sans-serif; font-size: 1.5rem; color: #fff; }
+
+        .track { display: flex; justify-content: space-between; padding: 15px; border-bottom: 1px solid var(--border-glass); }
+        .track-name { font-family: 'Syncopate', sans-serif; font-size: 0.75rem; color: #fff; }
+
+        .gig-card { background: #0a0a0a; padding: 25px; border-left: 4px solid var(--electric-blue); display: flex; justify-content: space-between; align-items: center; }
+
+        .arsenal-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+        .arsenal-item { padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); text-align: center; font-size: 0.7rem; cursor: pointer; }
         .arsenal-item:hover { background: var(--electric-blue); color: #000; }
-        #gear-display { margin-top: 40px; display: none; grid-template-columns: 1fr 1.5fr; gap: 30px; align-items: center; animation: fadeIn 0.8s ease; }
-        .gear-img { width: 100%; border-radius: 4px; border: 1px solid var(--border-glass); }
+        
+        #gear-display { margin-top: 30px; display: none; grid-template-columns: 1fr 1.5fr; gap: 30px; align-items: center; animation: fadeIn 0.5s; }
+        .gear-img { width: 100%; border: 1px solid var(--border-glass); }
+
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        footer { text-align: center; padding: 60px; font-size: 0.7rem; color: #444; letter-spacing: 2px; }
+        footer { text-align: center; padding: 60px 20px; font-size: 0.6rem; color: #444; letter-spacing: 2px; border-top: 1px solid var(--border-glass); }
     </style>
 </head>
 <body>
     <div class="thunder-bg"></div>
+
+    <nav>
+        <ul>
+            <li><a href="#about">THE ORIGIN</a></li>
+            <li><a href="#journals">JOURNALS</a></li>
+            <li><a href="#setlist">SETLIST</a></li>
+            <li><a href="#studio">EQUIPOS</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+    </nav>
+    
     <header>
-        <div class="logo-container">
-            <img src="logo.jpg" alt="Storm of Destruction Logo">
-        </div>
+        <div class="logo-container"><img src="logo.jpg" alt="Storm of Destruction Logo"></div>
         <div class="motto">Even in the storm, the light still shines</div>
     </header>
+
+    <section id="about">
+        <h2>The Origin</h2>
+        <div class="glass-box">
+            <p>A <strong>Storm of Destruction</strong> é o resultado da fusão entre a técnica de garagem e a urgência de expressão. Baseada em Campinas, a banda utiliza o "Bunker do Diogo" como laboratório sonoro para desconstruir o Heavy Rock tradicional e injetar doses de realidade urbana.</p>
+            <div class="stats-grid">
+                <div class="stat-item"><span class="stat-num">03</span><span style="font-size: 0.6rem;">VOZES</span></div>
+                <div class="stat-item"><span class="stat-num">01</span><span style="font-size: 0.6rem;">BUNKER</span></div>
+                <div class="stat-item"><span class="stat-num">∞</span><span style="font-size: 0.6rem;">RUIDO</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="journals">
+        <h2>Bunker Journals</h2>
+        <div class="journal-grid">
+            <div class="journal-card">
+                <span class="journal-date">12 MAR 2026</span>
+                <h3>Distorção é a Chave</h3>
+                <p>Hoje Daniel e Diogo testaram novos pedais para o cover de 333. A ideia é transformar o beat do Matuê em um paredão de som visceral.</p>
+            </div>
+            <div class="journal-card">
+                <span class="journal-date">10 MAR 2026</span>
+                <h3>O Motor do Ícaro</h3>
+                <p>Ensaiamos a transição de Notion. A bateria precisa guiar o caos para que a melodia não se perca no peso.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="setlist">
+        <h2>Setlist de Guerra</h2>
+        <div class="glass-box">
+            <div class="track"><span class="track-name">01. Smells Like Teen Spirit</span><span style="color:var(--electric-blue); font-size:0.7rem;">NIRVANA</span></div>
+            <div class="track"><span class="track-name">02. Notion (Rock Version)</span><span style="color:var(--electric-blue); font-size:0.7rem;">THE RARE OCCASIONS</span></div>
+            <div class="track"><span class="track-name">03. 333</span><span style="color:var(--electric-blue); font-size:0.7rem;">MATUÊ (HEAVY)</span></div>
+            <div class="track"><span class="track-name">04. Enter Sandman</span><span style="color:var(--electric-blue); font-size:0.7rem;">METALLICA</span></div>
+        </div>
+    </section>
 
     <section id="studio">
         <h2>The HQ Basement</h2>
         <div class="glass-box">
             <div class="arsenal-list">
-                <div class="arsenal-item" onclick="showGear('drums')">Bateria (Ícaro)</div>
-                <div class="arsenal-item" onclick="showGear('flyingv')">Flying V (Diogo)</div>
-                <div class="arsenal-item" onclick="showGear('strato')">Strato (Daniel)</div>
+                <div class="arsenal-item" onclick="showGear('drums')">BATERIA</div>
+                <div class="arsenal-item" onclick="showGear('flyingv')">FLYING V</div>
+                <div class="arsenal-item" onclick="showGear('strato')">STRATO</div>
             </div>
             <div id="gear-display">
                 <img id="gear-photo" src="" alt="Equipamento" class="gear-img">
                 <div>
                     <h3 id="gear-title" style="color: #fff; font-family: 'Syncopate'; margin-bottom: 10px;"></h3>
-                    <p id="gear-user" style="color: var(--electric-blue); font-weight: bold; text-transform: uppercase; margin-bottom: 10px;"></p>
                     <p id="gear-desc"></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer>STORM OF DESTRUCTION // 2026</footer>
+    <section id="faq">
+        <h2>F.A.Q.</h2>
+        <div class="glass-box">
+            <div class="faq-item">
+                <h4>Por que "Storm of Destruction"?</h4>
+                <p>Porque nossa música é sobre o que sobra depois da tempestade: a reconstrução.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Onde vocês ensaiam?</h4>
+                <p>No Bunker, um espaço isolado onde o volume não tem limites.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Qual a formação?</h4>
+                <p>Daniel (Voz/Strato), Diogo (Solo/Flying V) e Ícaro (Bateria).</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>STORM OF DESTRUCTION // 2026 // CAMPINAS - SP</footer>
 
     <script>
         const gearData = {
-            'drums': {
-                title: 'Bateria Trovão',
-                user: 'Operada por Ícaro',
-                desc: 'O motor rítmico brutal.',
-                img: 'https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=500'
-            },
-            'flyingv': {
-                title: 'Gibson Flying V',
-                user: 'Operada por Diogo',
-                desc: 'Agressividade pura.',
-                img: 'voandov.png' 
-            },
-            'strato': {
-                title: 'Stratocaster',
-                user: 'Operada por Daniel',
-                desc: 'A fundação rítmica.',
-                img: 'strato.png'
-            }
+            'drums': { title: 'BATERIA TROVÃO', desc: 'O motor que dita o ritmo da destruição.', img: 'https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=500' },
+            'flyingv': { title: 'GIBSON FLYING V', desc: 'Ataque sonoro e solos cortantes.', img: 'voandov.png' },
+            'strato': { title: 'STRATOCASTER', desc: 'A base sólida e os timbres clássicos.', img: 'strato.png' }
         };
 
         function showGear(id) {
@@ -84,10 +180,8 @@
             const data = gearData[id];
             document.getElementById('gear-photo').src = data.img;
             document.getElementById('gear-title').innerText = data.title;
-            document.getElementById('gear-user').innerText = data.user;
             document.getElementById('gear-desc').innerText = data.desc;
             display.style.display = 'grid';
-            display.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
     </script>
 </body>
