@@ -119,6 +119,26 @@
 </head>
 <body>
     <div id="lightning-flash"></div>
+<div id="achievement-toast">
+    <span style="color: var(--electric-blue);">[CONQUISTA DESBLOQUEADA]</span><br>
+    <p id="achievement-name" style="margin-top:5px;"></p>
+</div>
+
+<div id="storm-pedal-container" style="position: fixed; top: 90px; right: 20px; z-index: 2000; display: none; flex-direction: column; align-items: center; gap: 10px; background: rgba(0,0,0,0.8); padding: 15px; border: 1px solid #444; border-radius: 8px; font-family: 'Syncopate'; box-shadow: 0 10px 20px rgba(0,0,0,0.5);">
+    <div style="font-size: 0.6rem; color: #aaa; letter-spacing: 2px;">STORM DISTORTION</div>
+    <div style="display: flex; gap: 15px;">
+        <div style="text-align: center;">
+            <label for="gain-knob" style="font-size: 0.5rem; color: var(--electric-blue); display: block; margin-bottom: 5px;">GAIN</label>
+            <input type="range" id="gain-knob" min="0" max="100" value="50" step="1" oninput="updateDistortion(this.value)" style="writing-mode: bt-lr; /* IE */ -webkit-appearance: slider-vertical; /* WebKit */ width: 15px; height: 80px; background: #222; cursor: ns-resize;">
+        </div>
+        <div style="text-align: center;">
+            <label for="volume-knob" style="font-size: 0.5rem; color: var(--electric-blue); display: block; margin-bottom: 5px;">VOL</label>
+            <input type="range" id="volume-knob" min="0" max="100" value="70" step="1" oninput="updateVolume(this.value)" style="writing-mode: bt-lr; -webkit-appearance: slider-vertical; width: 15px; height: 80px; background: #222; cursor: ns-resize;">
+        </div>
+    </div>
+    <div id="pedal-status" style="font-size: 0.5rem; color: #666;">LEVEL: 50%</div>
+</div>
+    <div id="lightning-flash"></div>
     <div id="achievement-toast">
         <span style="color: var(--electric-blue);">[CONQUISTA DESBLOQUEADA]</span><br>
         <p id="achievement-name" style="margin-top:5px;"></p>
@@ -164,13 +184,43 @@
     </section>
 
     <section id="crew">
-        <h2>The Crew</h2>
-        <div class="crew-grid">
-            <div class="crew-card"><span class="crew-role">VOZ & GUITARRA BASE</span><span class="crew-name">DANIEL</span><p>Vocais viscerais e base sólida.</p></div>
-            <div class="crew-card"><span class="crew-role">GUITARRA SOLO</span><span class="crew-name">DIOGO</span><p>Mestre dos riffs e distorções cortantes.</p></div>
-            <div class="crew-card"><span class="crew-role">BATERIA</span><span class="crew-name">ÍCARO</span><p>O motor implacável da destruição.</p></div>
+    <h2>The Crew</h2>
+    <div class="crew-grid">
+        <div class="crew-card">
+            <span class="crew-role">VOZ / BAIXO</span>
+            <span class="crew-name">DANIEL</span>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 15px; font-family: monospace; font-size: 0.65rem; text-align: left; color: #aaa; border-top: 1px solid #333; padding-top: 10px;">
+                <div>[ CLASSE: BARD (DOOM) ]</div>
+                <div>[ LÍRICA: 90/100 ] <span style="color:var(--electric-blue);">████████░░</span></div>
+                <div>[ CAFEÍNA: MAX ] <span style="color:#ff4444;">██████████</span></div>
+                <div>[ TÉCNICA: 75/100 ] <span style="color:var(--electric-blue);">███████░░░</span></div>
+                <p style="margin-top: 10px; font-family: 'Inter'; font-size: 0.75rem;">Vocais viscerais e base sólida que sustenta a parede sonora.</p>
+            </div>
         </div>
-    </section>
+        <div class="crew-card">
+            <span class="crew-role">GUITARRA SOLO</span>
+            <span class="crew-name">DIOGO</span>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 15px; font-family: monospace; font-size: 0.65rem; text-align: left; color: #aaa; border-top: 1px solid #333; padding-top: 10px;">
+                <div>[ CLASSE: WIZARD (RIFFS) ]</div>
+                <div>[ DISTORÇÃO: 95/100 ] <span style="color:#ffaa00;">█████████░</span></div>
+                <div>[ VELOCIDADE: 85/100 ] <span style="color:var(--electric-blue);">████████░░</span></div>
+                <div>[ TÉCNICA: 90/100 ] <span style="color:var(--electric-blue);">██████████</span></div>
+                <p style="margin-top: 10px; font-family: 'Inter'; font-size: 0.75rem;">Mestre dos riffs magistrais e distorções cortantes que definem a identidade Storm.</p>
+            </div>
+        </div>
+        <div class="crew-card">
+            <span class="crew-role">BATERIA</span>
+            <span class="crew-name">ÍCARO</span>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 15px; font-family: monospace; font-size: 0.65rem; text-align: left; color: #aaa; border-top: 1px solid #333; padding-top: 10px;">
+                <div>[ CLASSE: BARBARIAN (DRUMS) ]</div>
+                <div>[ PODER: 100/100 ] <span style="color:#00ffaa;">██████████</span></div>
+                <div>[ ESTÂMINA: 90/100 ] <span style="color:var(--electric-blue);">█████████░</span></div>
+                <div>[ CÓDIGO: 80/100 ] <span style="color:var(--electric-blue);">████████░░</span></div>
+                <p style="margin-top: 10px; font-family: 'Inter'; font-size: 0.75rem;">O motor implacável. Ícaro dita o ritmo da destruição, unindo força bruta com precisão técnica.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
     <section id="setlist">
         <h2>Setlist de Guerra</h2>
@@ -341,6 +391,121 @@
         }
     }
     window.onresize = initRain;
+    // =========================================
+// BLOCO 2: LÓGICA DO PEDAL (COLAR NO FINAL DO <SCRIPT>)
+// =========================================
+
+// --- WEB AUDIO API SETUP ---
+let audioCtx;
+let distortionNode;
+let gainNode;
+let biquadFilter;
+let source;
+
+function initAudioSystem() {
+    if (audioCtx) return; // Já inicializado
+
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    distortionNode = audioCtx.createWaveShaper();
+    gainNode = audioCtx.createGain();
+    biquadFilter = audioCtx.createBiquadFilter();
+
+    // Configuração do Filtro (Tone)
+    biquadFilter.type = "lowpass";
+    biquadFilter.frequency.setValueAtTime(3000, audioCtx.currentTime); // Corta agudos ásperos
+
+    // Conexões: Source -> Distortion -> Filter -> Gain -> Destination
+    // A fonte (source) será o som do trovão simulado.
+    
+    distortionNode.connect(biquadFilter);
+    biquadFilter.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+
+    // Inicializa os valores dos knobs
+    updateDistortion(document.getElementById('gain-knob').value);
+    updateVolume(document.getElementById('volume-knob').value);
+}
+
+// Função para gerar a curva de distorção (Hard Clipping)
+function makeDistortionCurve(amount) {
+    let k = typeof amount === 'number' ? amount : 50,
+        n_samples = 44100,
+        curve = new Float32Array(n_samples),
+        deg = Math.PI / 180,
+        i = 0,
+        x;
+    for ( ; i < n_samples; ++i ) {
+        x = i * 2 / n_samples - 1;
+        curve[i] = ( 3 + k ) * x * 20 * deg / ( Math.PI + k * Math.abs(x) );
+    }
+    return curve;
+}
+
+function updateDistortion(value) {
+    if (!distortionNode) return;
+    // Mapeia 0-100 para 0-400 de intensidade de distorção
+    let distortionAmount = value * 4; 
+    distortionNode.curve = makeDistortionCurve(distortionAmount);
+    document.getElementById('pedal-status').innerText = `DRIVE: ${value}%`;
+    document.getElementById('pedal-status').style.color = `rgb(${value*2.55}, 255, ${255 - value*2.55})`;
+}
+
+function updateVolume(value) {
+    if (!gainNode) return;
+    // Mapeia 0-100 para 0-1 de ganho
+    gainNode.gain.setValueAtTime(value / 100, audioCtx.currentTime);
+}
+
+// Função para tocar o trovão DISTORCIDO
+function playDistortedThunder() {
+    if (!audioCtx) initAudioSystem();
+
+    // Cria um buffer de áudio curto (ruído branco distorcido) para simular o trovão
+    const bufferSize = audioCtx.sampleRate * 1.5; // 1.5 segundos
+    const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+    const data = buffer.getChannelData(0);
+
+    for (let i = 0; i < bufferSize; i++) {
+        // Ruído branco base
+        data[i] = Math.random() * 2 - 1;
+    }
+
+    const noiseSource = audioCtx.createBufferSource();
+    noiseSource.buffer = buffer;
+
+    // Conecta o ruído ao sistema de distorção
+    noiseSource.connect(distortionNode);
+    
+    // Toca
+    noiseSource.start();
+    noiseSource.stop(audioCtx.currentTime + 1.5);
+}
+
+// --- INTEGRAÇÃO COM O TOGGLESTORM MANTIDO ---
+// Você vai precisar ADICIONAR estas linhas DENTRO da sua função toggleStormMode() existente.
+// Procure por: if (isActive) { ... } e cole isso lá dentro.
+
+/*
+function toggleStormMode() {
+    // ... seu código original ...
+
+    if (isActive) {
+        // --- NOVAS LINHAS PARA O PEDAL ---
+        if (!audioCtx) initAudioSystem();
+        document.getElementById('storm-pedal-container').style.display = 'flex';
+        audioCtx.resume(); // Garante que o áudio não esteja pausado pelo navegador
+        playDistortedThunder(); // Toca o trovão distorcido ao invés do som limpo
+        // ---------------------------------
+        
+        // ... restante do seu código (initRain, etc) ...
+    } else {
+        // --- NOVA LINHA PARA ESCONDER O PEDAL ---
+        document.getElementById('storm-pedal-container').style.display = 'none';
+        // ----------------------------------------
+    }
+}
+*/
+// =========================================
     </script>
 </body>
 </html>
